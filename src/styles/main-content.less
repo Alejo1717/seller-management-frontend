@@ -1,0 +1,84 @@
+.main-content {
+    width: 95%;
+    height: 100px; 
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid @gris-5;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 2.55px rgba(0, 0, 0, 0.15);
+
+    .section-title {
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        padding-bottom: 5px;
+        border-bottom: 1px solid @gris-5;
+    }
+
+    .button-title {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+    
+
+    .form-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+        margin-bottom: 20px;
+    
+        .form-input {
+            width: 100%;
+        }
+
+        .ant-row {
+            margin-bottom: 0;
+        }
+    }
+
+    .row-incomplete {
+        justify-content: flex-start;
+    }
+    
+    .form-checkbox-container {
+        padding-bottom: 15px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid @gris-5;
+    }
+
+    .ant-select-item-option-content,
+    .ant-select-selection-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        svg {
+            height: 25px;
+            width: 50px;
+            padding-right: 10px;
+        }
+    }
+}
+

@@ -10,6 +10,9 @@ export interface Subagente {
     type: string;
 }
 
+export const onTableActionRow = (record: any) => {
+   return record
+}
 export const columnsSubagente: ColumnsType<Subagente> = [
     {
         title: 'Código',
@@ -37,7 +40,16 @@ export const columnsSubagente: ColumnsType<Subagente> = [
         key: 'action',
         render: (_: any, record: any) => (
             <Row justify='end'>
-                <Icon path={mdiArrowRight} style={{ width: 20, height: 20 }} />
+                <div
+                    onClick={onTableActionRow(record)}
+                    style={{ width: 20, height: 20, cursor: 'pointer' }}
+                >
+                    <Icon
+                        path={mdiArrowRight}
+
+                    />
+                </div>
+
             </Row>
 
         ),
@@ -52,7 +64,7 @@ export interface Sellers {
     type: string;
     createDate: string;
     credit: number;
-    deleteDate:string;
+    deleteDate: string;
     obs: string;
 }
 
@@ -88,7 +100,7 @@ export const columnsSellers: ColumnsType<Sellers> = [
     {
         title: 'Fecha Alta',
         dataIndex: 'createDate',
-        render: createDate => <span>{(createDate !== '') ? moment(createDate).format('DD/MM/YYYY, HH:mm:ss'): ''}</span>,
+        render: createDate => <span>{(createDate !== '') ? moment(createDate).format('DD/MM/YYYY, HH:mm:ss') : ''}</span>,
         sorter: (a: any, b: any) => a.createDate - b.createDate,
         align: 'center',
         width: '13%',
@@ -103,7 +115,7 @@ export const columnsSellers: ColumnsType<Sellers> = [
     {
         title: 'Fecha Baja',
         dataIndex: 'deleteDate',
-        render: deleteDate => <span>{ (deleteDate !== '') ? moment(deleteDate).format('DD/MM/YYYY, HH:mm:ss'): ''}</span>,
+        render: deleteDate => <span>{(deleteDate !== '') ? moment(deleteDate).format('DD/MM/YYYY, HH:mm:ss') : ''}</span>,
         sorter: (a: any, b: any) => a.deleteDate - b.deleteDate,
         align: 'center',
         width: '13%',

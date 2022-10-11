@@ -8,6 +8,17 @@ import { columnsSellers, columnsSubagente, Sellers, Subagente } from '../../mode
 interface Props { }
 
 const Home = (props: Props) => {
+    const [showSellerTable, setShowSellerTable] = React.useState<boolean>(false);
+    const [sellers, setSellers] = React.useState<Sellers[]>();
+    const onAction = (subagent: Subagente) => {
+        console.log(subagent);        
+        setShowSellerTable(true)
+        setSellers(dataVendedores)
+    }
+    const onSelectRow = (sellers : Sellers, index: number) => {
+      console.log('SELLERS and INDEX ROW', sellers, index);
+      
+    }
     return (
         <div>
             <TitlePage title='Agentes' />
@@ -24,6 +35,8 @@ const Home = (props: Props) => {
                 size='small'
                 columns={columnsSubagente}
                 dataSource={dataSubagente}
+                onAction={onAction}
+
             />
             <div style={{ width: '100%', height: 48 }} />
             <TitlePage title='Vendedores' />
@@ -31,6 +44,7 @@ const Home = (props: Props) => {
                 size='small'
                 columns={columnsSellers}
                 dataSource={dataVendedores}
+                onSelectRow={onSelectRow}
             />
         </div>
     )

@@ -1,7 +1,8 @@
-import { Table } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import React from 'react'
-import { onTableActionRow } from '../../models/column.data'
+import React from 'react';
+import Icon from '@mdi/react';
+import { Row, Table } from 'antd';
+import { mdiArrowRight } from '@mdi/js';
+import { ColumnsType } from 'antd/lib/table';
 
 interface Props {
     size?: 'small' | 'middle' | 'large',
@@ -12,16 +13,12 @@ interface Props {
 }
 
 const TableForm = (props: Props) => {
-    const onAction = () => {
-        const dataRow = onTableActionRow('Aqui');
-        console.log(dataRow);
-        
-    }
+
+
     return (
         <div className='antd-table'>
             <Table
                 size={props.size}
-                columns={props.columns}
                 dataSource={props.dataSource}
                 pagination={false}
                 showSorterTooltip={false}
@@ -35,7 +32,40 @@ const TableForm = (props: Props) => {
                 } : () => {
                     return {}
                 }}
-            />
+            >
+                {
+                    props.columns.map((col: any, index: number) => {
+                        return (
+                            <div key={`${'rowTable' + index}`}>
+                                {
+                                    col.key !== 'action' ?
+                                        <Table.Column
+                                            {...col} key={`${'colTable' + index}`} /> :
+                                        <Table.Column
+                                            {...col}
+                                            key={`${'colActionTable' + index}`}
+                                            render={(_: any, record: any) => {
+                                                return (
+                                                    <Row justify='end' key={`${'action' + __dirname}`}>
+                                                        <div
+                                                            onClick={() => props.onAction(record)}
+                                                            style={{ width: 20, height: 20, cursor: 'pointer' }}
+                                                        >
+                                                            <Icon
+                                                                path={mdiArrowRight}
+                                                            />
+                                                        </div>
+                                                    </Row>
+                                                )
+                                            }}
+                                        />
+                                }
+                            </div>
+                        )
+                    })
+                }
+
+            </Table>
         </div>
     )
 }

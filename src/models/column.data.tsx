@@ -10,9 +10,7 @@ export interface Subagente {
     type: string;
 }
 
-export const onTableActionRow = (record: any) => {
-   return record
-}
+
 export const columnsSubagente: ColumnsType<Subagente> = [
     {
         title: 'Código',
@@ -37,27 +35,12 @@ export const columnsSubagente: ColumnsType<Subagente> = [
     },
     {
         title: '',
-        key: 'action',
-        render: (_: any, record: any) => (
-            <Row justify='end'>
-                <div
-                    onClick={onTableActionRow(record)}
-                    style={{ width: 20, height: 20, cursor: 'pointer' }}
-                >
-                    <Icon
-                        path={mdiArrowRight}
-
-                    />
-                </div>
-
-            </Row>
-
-        ),
+        key: 'action',        
         width: '40%',
     },
 ];
 
-export interface Sellers {
+export interface Seller {
     id: string;
     firstName: string;
     lastName: string;
@@ -68,7 +51,7 @@ export interface Sellers {
     obs: string;
 }
 
-export const columnsSellers: ColumnsType<Sellers> = [
+export const columnsSellers: ColumnsType<Seller> = [
     {
         title: 'id',
         dataIndex: 'id',

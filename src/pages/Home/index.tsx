@@ -3,21 +3,25 @@ import InputForm from '../../components/InputForm';
 import Table from '../../components/Table';
 import TitlePage from '../../components/TitlePage/intedx';
 import { dataAgente, dataSubagente, dataVendedores } from '../../datamock/dataMock';
-import { columnsSellers, columnsSubagente, Sellers, Subagente } from '../../models/column.data';
+import { columnsSellers, columnsSubagente, Seller, Subagente } from '../../models/column.data';
+import SellersPage from '../Sellers';
 
 interface Props { }
 
 const Home = (props: Props) => {
     const [showSellerTable, setShowSellerTable] = React.useState<boolean>(false);
-    const [sellers, setSellers] = React.useState<Sellers[]>();
+    const [showSellerPage, setShowSellerPage] = React.useState<boolean>(false);
+    const [sellerSelected, setSellerSelected] = React.useState<Seller>();
+    const [sellers, setSellers] = React.useState<Seller[]>();
+   
     const onAction = (subagent: Subagente) => {
-        console.log(subagent);        
         setShowSellerTable(true)
         setSellers(dataVendedores)
     }
-    const onSelectRow = (sellers : Sellers, index: number) => {
-      console.log('SELLERS and INDEX ROW', sellers, index);
-      
+    const onSelectRow = (sellers: Seller, index: number) => {
+        setShowSellerPage(true)
+        console.log('SELLERS and INDEX ROW', sellers, index);
+
     }
     return (
         <div>
@@ -29,23 +33,29 @@ const Home = (props: Props) => {
                     disabled
                 />
             </div>
-            <div style={{ width: '100%', height: 48 }} />
-            <TitlePage title='Subagentes' />
-            <Table
-                size='small'
-                columns={columnsSubagente}
-                dataSource={dataSubagente}
-                onAction={onAction}
-
-            />
-            <div style={{ width: '100%', height: 48 }} />
-            <TitlePage title='Vendedores' />
-            <Table
-                size='small'
-                columns={columnsSellers}
-                dataSource={dataVendedores}
-                onSelectRow={onSelectRow}
-            />
+            {showSellerPage ?
+                <SellersPage /> :
+                <div style={{ width: '100%', marginTop: 48 }} >
+                    <TitlePage title='Subagentes' />
+                    <Table
+                        size='small'
+                        columns={columnsSubagente}
+                        dataSource={dataSubagente}
+                        onAction={(value: any) => onAction(value)}
+                    />
+                    {
+                        showSellerTable &&
+                        <div style={{ width: '100%', marginTop: 48 }} >
+                            <TitlePage title='Vendedores' />
+                            <Table
+                                size='small'
+                                columns={columnsSellers}
+                                dataSource={dataVendedores}
+                                onSelectRow={onSelectRow}
+                            />
+                        </div>
+                    }
+                </div>}
         </div>
     )
 }

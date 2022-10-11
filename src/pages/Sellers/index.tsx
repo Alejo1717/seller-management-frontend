@@ -11,7 +11,7 @@ type FormData = {
     country: string;
     email: string;
 }
-const Sellers = (props: Props) => {
+const SellersPage = (props: Props) => {
     const [date, setDate] = React.useState<string>('');
     const [country, setCountry] = React.useState<string>('');
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>();
@@ -47,4 +47,4 @@ const Sellers = (props: Props) => {
     )
 }
 
-export default Sellers;
+export default SellersPage;

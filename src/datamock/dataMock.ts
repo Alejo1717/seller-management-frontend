@@ -1,4 +1,4 @@
-import { Sellers, Subagente } from "../models/column.data";
+import { Seller, Subagente } from "../models/column.data";
 
 export const dataAgente = {
     nombre: 'Alejandro Garcia',
@@ -32,7 +32,7 @@ export const dataSubagente: Subagente[] = [
     }
 ];
 
-export const dataVendedores: Sellers[] = [
+export const dataVendedores: Seller[] = [
     {
         id:'1',
         firstName: 'Juan',

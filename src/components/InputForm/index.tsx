@@ -5,7 +5,7 @@ export interface Props {
   name: string;
   label?: string;
   placeholder?: string;
-  value: any;
+  value?: any;
   onChange?: any;
   onBlur?: any;
   onFocus?: any;
@@ -15,7 +15,7 @@ export interface Props {
   errorText?: any;
   size?: number;
   defaultValue?: any;
-  control: Control<any, any>;
+  control?: Control<any, any>;
   rules?: object;
 }
 
@@ -38,7 +38,7 @@ export default function InputForm(props: Props) {
           error={props.error}
           errorText={props.errorText}
           size={props.size}
-          defaultValue={props.defaultValue}
+          defaultValue={props.defaultValue}        
         />
       )}
       name={props.name}

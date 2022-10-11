@@ -1,18 +1,19 @@
-import { mdiAccountMultiple, mdiMapMarker,  } from "@mdi/js";
 import Icon from "@mdi/react";
+import { mdiAccountMultiple, mdiMapMarker, } from "@mdi/js";
+
 
 export const InitRoutesTabs = [
 	{
 		path: "/agentes",
 		name: "Agentes",
-		icon: <Icon path={mdiAccountMultiple } className='item-icon' />,
+		icon: <Icon path={mdiAccountMultiple} className='item-icon' />,
 		tooltipName: "Agentes",
-		showOn:"active"
+		showOn: "active"
 	},
 	{
 		path: "/local",
 		name: "Local",
-		icon: <Icon path={mdiMapMarker } className='item-icon' />,
+		icon: <Icon path={mdiMapMarker} className='item-icon' />,
 		tooltipName: "Local",
 		showOn: "done"
 	},

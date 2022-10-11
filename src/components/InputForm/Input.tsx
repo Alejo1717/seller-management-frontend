@@ -65,6 +65,7 @@ const InputCostum = (props: Props) => {
                         onFocus={() => onFocus()}
                         onBlur={() => onBlur()}
                         disabled={props.disabled ? props.disabled : false}
+                        defaultValue={props.defaultValue}
                     />
                 </Row>
                 <Row align='top' className='error-content'>

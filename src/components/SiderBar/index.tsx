@@ -26,16 +26,15 @@ const SiderBar: React.FC<Props> = (props) => {
                             <div>
                                 {
                                     filteredRoutes.map((routeTab: RouteTab, index: number) => (
-                                        <Tooltip  placement="right">
-                                            <ItemTab 
-                                                key={`item-tab${index}`} 
+                                        <Tooltip  placement="right" key={`item-tab${index}`} >
+                                            <ItemTab                                                 
                                                 routeTab={routeTab} 
                                                 navigate={navigate}
                                             />
                                         </Tooltip>
                                     ))
                                 }
-                            </div>
+                            </div> 
                         </div>
                         <div className='icon-lower-container'>
                             {

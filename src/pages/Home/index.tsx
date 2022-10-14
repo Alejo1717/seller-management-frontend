@@ -1,9 +1,10 @@
+import { Modal } from 'antd';
 import React from 'react';
 import InputForm from '../../components/InputForm';
 import Table from '../../components/Table';
 import TitlePage from '../../components/TitlePage/intedx';
 import { dataAgente, dataSubagente, dataVendedores } from '../../datamock/dataMock';
-import { columnsSellers, columnsSubagente, Seller, Subagente } from '../../models/column.data';
+import { ACTIONS_TABLE, columnsSellers, columnsSubagente, Seller, Subagente } from '../../models/column.data';
 import SellersPage from '../Sellers';
 
 interface Props { }
@@ -13,15 +14,34 @@ const Home = (props: Props) => {
     const [showSellerPage, setShowSellerPage] = React.useState<boolean>(false);
     const [sellerSelected, setSellerSelected] = React.useState<Seller>();
     const [sellers, setSellers] = React.useState<Seller[]>();
-   
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+    const [actionSelected, setActionSelected] = React.useState<string>('')
+
     const onAction = (subagent: Subagente) => {
         setShowSellerTable(true)
         setSellers(dataVendedores)
     }
-    const onSelectRow = (sellers: Seller, index: number) => {
+    const onSelectRow = (seller: Seller, index: number) => {
         setShowSellerPage(true)
-        console.log('SELLERS and INDEX ROW', sellers, index);
+        console.log('SELLERS and INDEX ROW', seller, index);
 
+    }
+    const onActions = (action: string, seller: Seller) => {
+        switch (action) {
+            case ACTIONS_TABLE.DELETE:
+                break;
+            case ACTIONS_TABLE.DETAILS:
+                break;
+            case ACTIONS_TABLE.EDIT:
+                break;
+            default:
+                break;
+
+        }
+        console.log('ACTION and SELECT SELLER', action, seller);
+        setActionSelected(action);
+        setSellerSelected(seller);
+        setIsModalOpen(true)
     }
     return (
         <div>
@@ -51,11 +71,15 @@ const Home = (props: Props) => {
                                 size='small'
                                 columns={columnsSellers}
                                 dataSource={dataVendedores}
-                                onSelectRow={onSelectRow}
+                                onActions={onActions}
                             />
                         </div>
                     }
                 </div>}
+            <Modal open={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+                <p>Acción Seleccionada: {actionSelected}</p>
+                <p>Vendedo Seleccionado: {sellerSelected?.firstName + ' ' + sellerSelected?.lastName}</p>
+            </Modal>
         </div>
     )
 }

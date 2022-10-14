@@ -1,14 +1,16 @@
 import React from 'react';
 import Icon from '@mdi/react';
 import { Row, Table } from 'antd';
-import { mdiArrowRight } from '@mdi/js';
+import { mdiArrowRight, mdiDelete, mdiEye, mdiPencil } from '@mdi/js';
 import { ColumnsType } from 'antd/lib/table';
+import { ACTIONS_TABLE } from '../../models/column.data';
 
 interface Props {
     size?: 'small' | 'middle' | 'large',
     columns: ColumnsType<any>,
     dataSource: any[],
     onAction?: any,
+    onActions?: any,
     onSelectRow?: any,
 }
 
@@ -38,27 +40,67 @@ const TableForm = (props: Props) => {
                         return (
                             <div key={`${'rowTable' + index}`}>
                                 {
-                                    col.key !== 'action' ?
-                                        <Table.Column
-                                            {...col} key={`${'colTable' + index}`} /> :
-                                        <Table.Column
-                                            {...col}
-                                            key={`${'colActionTable' + index}`}
-                                            render={(_: any, record: any) => {
-                                                return (
-                                                    <Row justify='end' key={`${'action' + __dirname}`}>
-                                                        <div
-                                                            onClick={() => props.onAction(record)}
-                                                            style={{ width: 20, height: 20, cursor: 'pointer' }}
-                                                        >
-                                                            <Icon
-                                                                path={mdiArrowRight}
-                                                            />
-                                                        </div>
-                                                    </Row>
-                                                )
-                                            }}
-                                        />
+                                    col.key !== 'action' && col.key !== 'actions' &&
+                                    <Table.Column
+                                        {...col} key={`${'colTable' + index}`} />
+                                }
+                                {
+                                    col.key === 'action' &&
+                                    <Table.Column
+                                        {...col}
+                                        key={`${'colActionTable' + index}`}
+                                        render={(_: any, record: any) => {
+                                            return (
+                                                <Row justify='end' key={`${'action' + __dirname}`}>
+                                                    <div
+                                                        onClick={() => props.onAction(record)}
+                                                        style={{ width: 20, height: 20, cursor: 'pointer' }}
+                                                    >
+                                                        <Icon
+                                                            path={mdiArrowRight}
+                                                        />
+                                                    </div>
+                                                </Row>
+                                            )
+                                        }}
+                                    />
+                                }
+                                {
+                                    col.key === 'actions' &&
+                                    <Table.Column
+                                        {...col}
+                                        key={`${'colActionsTable' + index}`}
+                                        render={(_: any, record: any) => {
+                                            return (
+                                                <Row justify='space-evenly' key={`${'actions' + __dirname}`}>
+                                                    <div
+                                                        onClick={() => props.onActions(ACTIONS_TABLE.DELETE, record)}
+                                                        style={{ width: 20, height: 20, cursor: 'pointer' }}
+                                                    >
+                                                        <Icon
+                                                            path={mdiDelete}
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        onClick={() => props.onActions(ACTIONS_TABLE.DETAILS, record)}
+                                                        style={{ width: 20, height: 20, cursor: 'pointer' }}
+                                                    >
+                                                        <Icon
+                                                            path={mdiEye}
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        onClick={() => props.onActions(ACTIONS_TABLE.EDIT, record)}
+                                                        style={{ width: 20, height: 20, cursor: 'pointer' }}
+                                                    >
+                                                        <Icon
+                                                            path={mdiPencil}
+                                                        />
+                                                    </div>
+                                                </Row>
+                                            )
+                                        }}
+                                    />
                                 }
                             </div>
                         )

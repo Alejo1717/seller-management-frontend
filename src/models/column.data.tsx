@@ -10,6 +10,11 @@ export interface Subagente {
     type: string;
 }
 
+export enum ACTIONS_TABLE {
+    EDIT = "edit",
+    DELETE = "delete",
+    DETAILS = "details"
+}
 
 export const columnsSubagente: ColumnsType<Subagente> = [
     {
@@ -57,7 +62,7 @@ export const columnsSellers: ColumnsType<Seller> = [
         dataIndex: 'id',
         sorter: (a: any, b: any) => a.id - b.id,
         align: 'center',
-        width: '8%',
+        width: '10%',
     },
     {
         title: 'Nombres',
@@ -88,13 +93,7 @@ export const columnsSellers: ColumnsType<Seller> = [
         align: 'center',
         width: '13%',
     },
-    {
-        title: 'Credito',
-        dataIndex: 'credit',
-        sorter: (a: any, b: any) => a.credit - b.credit,
-        align: 'center',
-        width: '13%',
-    },
+    
     {
         title: 'Fecha Baja',
         dataIndex: 'deleteDate',
@@ -104,10 +103,16 @@ export const columnsSellers: ColumnsType<Seller> = [
         width: '13%',
     },
     {
-        title: 'Observacion',
-        dataIndex: 'obs',
-        sorter: (a: any, b: any) => a.obs - b.obs,
+        title: 'Credito',
+        dataIndex: 'credit',
+        sorter: (a: any, b: any) => a.credit - b.credit,
         align: 'center',
         width: '13%',
+    },
+    {
+        title: 'Acciones',
+        key: 'actions',
+        align: 'center',
+        width: '11%',
     },
 ]

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Control, Controller, useForm } from 'react-hook-form';
 import TextArea from './TextArea';
+
 export interface Props {
   name: string;
   label?: string;
   placeholder?: string;
-  value: any;
+  value?: any;
   onChange?: any;
   onBlur?: any;
   onFocus?: any;
@@ -15,7 +16,7 @@ export interface Props {
   errorText?: any;
   size?: number;
   defaultValue?: any;
-  control: Control<any, any>;
+  control?: Control<any, any>;
   rules?: object;
 }
 

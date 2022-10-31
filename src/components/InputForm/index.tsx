@@ -1,5 +1,5 @@
 import React from 'react';
-import { Control, Controller, useForm } from 'react-hook-form';
+import { Control, Controller, FieldValues, useForm, UseFormRegister } from 'react-hook-form';
 import Input from './Input';
 export interface Props {
   name: string;
@@ -30,7 +30,7 @@ export default function InputForm(props: Props) {
           label={props.label}
           placeholder={props.placeholder}
           value={value}
-          onChange={(value: any)  => {onChange(value); props.onChange(value)}}
+          onChange={(value: any)  => {onChange(value); if (props.onChange) props.onChange(value)}}
           onBlur={onBlur}
           onFocus={props.onFocus}
           required={props.required}
@@ -38,7 +38,7 @@ export default function InputForm(props: Props) {
           error={props.error}
           errorText={props.errorText}
           size={props.size}
-          defaultValue={props.defaultValue}        
+          defaultValue={props.defaultValue} 
         />
       )}
       name={props.name}

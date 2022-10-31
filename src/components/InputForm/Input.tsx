@@ -2,12 +2,13 @@ import * as React from 'react';
 import Icon from '@mdi/react';
 import { mdiAsterisk } from '@mdi/js';
 import { Col, Input, Row, Typography } from 'antd';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 export interface Props {
     name: string;
     label?: string;
     placeholder?: string;
     value: any;
-    onChange: any;
+    onChange?: any;
     onBlur?: any;
     onFocus?: any;
     required?: boolean;
@@ -18,9 +19,9 @@ export interface Props {
     defaultValue?: any;
 }
 
-const InputCostum = (props: Props) => {
+const InputCustom = (props: Props) => {
 
-    const onchangeUser = (e: any) => {
+    const onchange = (e: any) => {
         props.onChange(e);
     };
 
@@ -35,52 +36,53 @@ const InputCostum = (props: Props) => {
         }
     }
     return (
-        <>
+        <div>
             <Col className='form-antd-style' style={{ flex: props.size }}>
                 {props.label &&
-                    <Row className='label-content'>
-                        <Typography.Text className={props.error ? 'label label-error' : 'label'}>
-                            {props.label}
-                            <>
-                                {
-                                    props.required
+                    <div>
+                        <Row className='label-content'>
+                            <Typography.Text className={props.error ? 'label label-error' : 'label'}>
+                                {props.label}
+                                <>
+                                    {props.required
                                         ?
                                         <Typography.Text className={props.error ? 'required required-error' : 'required'}>
-                                            {/* * */}
                                             <Icon path={mdiAsterisk} size={'10px'} style={{ marginBottom: '3px', marginLeft: '-3px' }} />
                                         </Typography.Text>
                                         :
                                         <Typography.Text className={'required'} />
-                                }
-                            </>
-                        </Typography.Text>
-                    </Row>
+                                    }
+                                </>
+                            </Typography.Text>
+                        </Row>
+                    </div>
                 }
-                <Row className={props.error ? 'input-error' : 'input'}>
+                <div className={props.error ? 'input-error' : 'input'}>
                     <Input
                         name={props.name}
                         value={props.value}
                         placeholder={props.placeholder}
-                        onChange={onchangeUser}
+                        onChange={onchange}
                         onFocus={() => onFocus()}
                         onBlur={() => onBlur()}
                         disabled={props.disabled ? props.disabled : false}
                         defaultValue={props.defaultValue}
                     />
-                </Row>
-                <Row align='top' className='error-content'>
-                    {
-                        props.error
+                </div>
+                <div style={{ display:'flex', alignItems: 'flex-start'}}>
+                    <div className='error-content'>
+                        {props.error
                             ?
                             <Typography.Text className='error' >
                                 {props.errorText}
                             </Typography.Text>
                             : null
-                    }
-                </Row>
+                        }
+                    </div>
+                </div>
             </Col>
-        </>
+        </div>
     );
 }
 
-export default InputCostum;
+export default InputCustom;

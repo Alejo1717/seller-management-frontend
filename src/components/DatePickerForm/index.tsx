@@ -16,7 +16,7 @@ export interface Props {
   errorText?: any;
   size?: number;
   defaultValue?: any;
-  control: Control<any, any>;
+  control?: Control<any, any>;
   rules?: object;
 }
 
@@ -39,7 +39,6 @@ export default function DatePickerForm(props: Props) {
           error={props.error}
           errorText={props.errorText}
           size={props.size}
-          defaultValue={props.defaultValue}
         />
       )}
       name={props.name}

@@ -28,19 +28,25 @@
     }
 
     .logo-link-container {
+        display: flex;
         height: 84.2px;
         width: 100%;
+        justify-content: center;
+        align-items: center;
     }
 
     .item-link-container {
+        display: flex;
         height: 70px;
         width: 100%;
-        
+        justify-content: center;
+        align-items: center;
+
         &:hover {
             background-color: @azul-secundario;
             cursor: pointer;
             transition: all .3s ease;
-            
+
             .item-icon {
                 color: @blanco;
             }
@@ -75,7 +81,6 @@
         }
     }
 }
-
 
 .ant-tooltip-arrow-content {
     display: none;

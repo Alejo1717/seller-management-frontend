@@ -18,7 +18,7 @@ export interface Props {
     size?: number;
 }
 
-const TextAreaCostum = (props: Props) => {
+const TextAreaCustom = (props: Props) => {
 
     const onchangeUser = (e: any) => {
         props.onChange(e);
@@ -42,14 +42,13 @@ const TextAreaCostum = (props: Props) => {
                         <Typography.Text className={props.error ? 'label label-error' : 'label'}>
                             {props.label}
                             <>
-                                {
-                                    props.required
-                                        ?
-                                        <Typography.Text className={props.error ? 'required required-error' : 'required'}>
-                                            <Icon path={mdiAsterisk} size={'10px'} style={{marginBottom: '3px', marginLeft: '-3px'}} />
-                                        </Typography.Text>
-                                        :
-                                        <Typography.Text className={'required'} />
+                                { props.required
+                                    ?
+                                    <Typography.Text className={props.error ? 'required required-error' : 'required'}>
+                                        <Icon path={mdiAsterisk} size={'10px'} style={{marginBottom: '3px', marginLeft: '-3px'}} />
+                                    </Typography.Text>
+                                    :
+                                    <Typography.Text className={'required'} />
                                 }
                             </>
                         </Typography.Text>
@@ -57,6 +56,7 @@ const TextAreaCostum = (props: Props) => {
                 }
                 <Row className={props.error ? 'input-error' : 'input'}>
                     <Input.TextArea
+                        // style={{paddingTop: '1rem'}}
                         name={props.name}
                         value={props.value}
                         placeholder={props.placeholder}
@@ -67,19 +67,18 @@ const TextAreaCostum = (props: Props) => {
                         allowClear={true}
                     />
                 </Row>
-                {
-                    props.error
-                        ?
-                        <Row align='top' className='error-content'>
-                            <Typography.Text className='error' >
-                                {props.errorText}
-                            </Typography.Text>
-                        </Row>
+                <Row align='top' className='error-content'>
+                    { props.error
+                        ? 
+                        <Typography.Text className='error' >
+                            {props.errorText}
+                        </Typography.Text>
                         : null
-                }
+                    }
+                </Row>
             </Col>
         </>
     );
 }
 
-export default TextAreaCostum;
+export default TextAreaCustom;

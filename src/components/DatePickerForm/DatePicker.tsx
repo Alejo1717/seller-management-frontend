@@ -1,8 +1,9 @@
 import React from 'react';
 import 'moment/locale/es';
 import Icon from '@mdi/react';
-import locale from 'antd/es/date-picker/locale/es_ES';
 import { mdiAsterisk, mdiCalendar} from '@mdi/js';
+import locale from 'antd/lib/date-picker/locale/es_ES';
+import getFormattedDate from '../../util/getFormattedDate';
 import { Col, DatePicker, DatePickerProps, Row,  Typography } from 'antd';
 
 export interface Props {
@@ -18,12 +19,11 @@ export interface Props {
     error?: any;
     errorText?: any;
     size?: number;
-    defaultValue?: any;
 }
 
-const dateFormat = 'DD/MM/YYYY';
+const date = getFormattedDate();
 
-const DatePickerCostum = (props: Props) => {
+const DatePickerCustom = (props: Props) => {
 
     const onChangeDate: DatePickerProps['onChange'] = (date) => {
         props.onChange(date?.toJSON())
@@ -67,8 +67,8 @@ const DatePickerCostum = (props: Props) => {
                     onFocus={() => onFocus()}
                     onBlur={() => onBlur()}
                     disabled={props.disabled ? props.disabled : false}
-                    format={dateFormat}
-                    style={{ width: '100%' }}
+                    format={date}
+                    style={{ width: '100%', flex: props.size }}
                     suffixIcon={
                         <span className='icon-arrow-content'>
                             <Icon path={mdiCalendar} className='icon-arrow' />
@@ -78,17 +78,15 @@ const DatePickerCostum = (props: Props) => {
                 />
             </Row>
             <Row align='top' className='error-content'>
-                {
-                    props.error
-                        ?
-                        <Typography.Text className='error' >
+                { props.error
+                    ? <Typography.Text className='error' >
                             {props.errorText}
                         </Typography.Text>
-                        : null
+                    : null
                 }
             </Row>
         </Col >
     )
 }
 
-export default DatePickerCostum;
+export default DatePickerCustom;

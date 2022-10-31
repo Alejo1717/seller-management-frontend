@@ -22,7 +22,7 @@ export interface Props {
     defaultValue?: any;
 }
 
-const SelectCostum = (props: Props) => {
+const SelectCustom = (props: Props) => {
     const onchangeUser = (e: any) => {     
         props.onChange(e)
     };
@@ -114,4 +114,4 @@ const SelectCostum = (props: Props) => {
     )
 }
 
-export default SelectCostum;
+export default SelectCustom;
